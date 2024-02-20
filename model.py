@@ -2,40 +2,47 @@
 class Note:
     '''Represents a note, with a name.'''
     # A class variable, counting the number of robots
+    note_id = 0
     num_of_notes = 0
-    def __init__(self, name):
+    def __init__(self, caption):
         '''Initializes the data.'''
-        self.note_id = note_id
-        self.caption = ''
+        self.note_id = Note.note_id
+        self.caption = caption
         self.body = ''
-        self.name = name
-        self.name = name
-        self.name = name
-        print(f'(Initializing {self.name})')
+        print(f'(Создана заметка {self.caption})')
         # When this person is created, the robot
         # adds to the population
-        num_of_notes += 1
+        Note.num_of_notes += 1
+        Note.note_id += 1
+
+    def get_id(self):
+        return self.note_id
+
+    def get_caption(self):
+        return self.caption
+
+    def get_body(self):
+        return self.body
+
+    def set_caption(self, caption):
+        self.caption = caption
+
+    def set_body(self, body):
+        self.body = body
+
     def delete_note(self):
         print('Заметка удалена')
         num_of_notes -= 1
         if num_of_notes == 0:
             print('Больше заметок нет')
-    def say_hi(self):
-        '''Greeting by the robot.
-        Yeah, they can do that.'''
-        print(f'Greetings, my masters call me {self.name}.')
+
     @classmethod
     def how_many(cls):
         '''Prints the number of notes'''
         print(f'Всего {cls.num_of_notes} заметок.')
-droid1 = Robot('R2-D2')
-droid1.say_hi()
-Robot.how_many()
-droid2 = Robot('C-3PO')
-droid2.say_hi()
-Robot.how_many()
-print('Robots can do some work here.')
-print('Robots have finished their work. So lets destroy them.')
-droid1.die()
-droid2.die()
-Robot.how_many()
+
+note1 = Note('Жопу с мылом')
+note1 = Note('Жопу с мыл')
+Note.how_many()
+print(note1.get_id())
+print(note1.get_id())
