@@ -18,11 +18,15 @@ class InterfaceNotes(ABC):
         pass
     
     @abstractmethod
+    def check_note_by_title():
+        pass
+
+    @abstractmethod
     def delete_note_by_title():
         pass
 
     @abstractmethod
-    def edit_note():
+    def edit_note_by_title():
         pass
 
     @abstractmethod
@@ -32,4 +36,6 @@ class InterfaceNotes(ABC):
     @abstractmethod
     def print_all_notes():
         pass
+
+    
 

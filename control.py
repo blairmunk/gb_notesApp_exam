@@ -55,9 +55,16 @@ class NoteManager(InterfaceNotes):
                 return note
         return None
 
+    def edit_note_by_title(self, title, new_title, new_content):
+        note = self.get_note_by_title(title)
+        note.modified_at = datetime.now()
+        note.title = new_title
+        note.content = new_content
+
     def print_all_notes(self):
         for note in self.notes:
             print(f"Created_at: {note.created_at.strftime('%Y-%m-%d %H:%M')}")
+            print(f"Modified_at: {note.created_at.strftime('%Y-%m-%d %H:%M')}")
             print(f"ID: {note.id}")
             print(f"Title: {note.title}")
             print(f"Content: {note.content}")
@@ -70,6 +77,8 @@ note_manager = NoteManager("notes.json")
 note_manager.add_note("Заголовок заметки 1", "Содержимое заметки 1")
 note_manager.add_note("Заголовок заметки 2", "Содержимое заметки 2")
 note_manager.add_note("Заголовок заметки 3", "Содержимое заметки 3")
+
+note_manager.edit_note_by_title("Заголовок заметки 2", "Новый заголовок", "Новое содержимое")
 
 
 # Удаление заметки по заголовку
