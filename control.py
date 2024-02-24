@@ -1,8 +1,9 @@
 import json
 from model import Note
 from datetime import datetime
+from InterfaceNotes import InterfaceNotes
 
-class NoteManager:
+class NoteManager(InterfaceNotes):
     def __init__(self, filename):
         self.filename = filename
         self.notes = self.load_notes()
@@ -37,7 +38,8 @@ class NoteManager:
 
     def add_note(self, title, content):
         if self.check_note_by_title(title):
-            return "Заметка с таким заголовком уже существует"
+            print(f'Заметка с заголовком "{title}" уже существует')
+            print()
         else:
             note = Note(title, content)
             self.notes.append(note)
