@@ -1,48 +1,50 @@
+import uuid
+from datetime import datetime
 
 class Note:
-    '''Represents a note, with a name.'''
-    # A class variable, counting the number of robots
-    note_id = 0
-    num_of_notes = 0
-    def __init__(self, caption):
-        '''Initializes the data.'''
-        self.note_id = Note.note_id
-        self.caption = caption
-        self.body = ''
-        print(f'(Создана заметка {self.caption})')
-        # When this person is created, the robot
-        # adds to the population
-        Note.num_of_notes += 1
-        Note.note_id += 1
+    def __init__(self, title, content):
+        self.id = str(uuid.uuid4())
+        self._title = title
+        self._content = content
+        self._created_at = datetime.now()
+        self._modified_at = datetime.now()
 
-    def get_id(self):
-        return self.note_id
+    @property
+    def title(self):
+        return self._title
 
-    def get_caption(self):
-        return self.caption
+    @title.setter
+    def title(self, value):
+        self._title = value
 
-    def get_body(self):
-        return self.body
+    @property
+    def content(self):
+        return self._content
 
-    def set_caption(self, caption):
-        self.caption = caption
+    @content.setter
+    def content(self, value):
+        self._content = value
 
-    def set_body(self, body):
-        self.body = body
+    @property
+    def created_at(self):
+        return self._created_at
+    
+    @created_at.setter
+    def created_at(self, value):
+        self._created_at = value
+    
+    @property
+    def modified_at(self):
+        return self._modified_at
 
-    def delete_note(self):
-        print('Заметка удалена')
-        num_of_notes -= 1
-        if num_of_notes == 0:
-            print('Больше заметок нет')
+    @modified_at.setter
+    def modified_at(self, value):
+        self._modified_at = value
 
-    @classmethod
-    def how_many(cls):
-        '''Prints the number of notes'''
-        print(f'Всего {cls.num_of_notes} заметок.')
-
-note1 = Note('Жопу с мылом')
-note1 = Note('Жопу с мыл')
-Note.how_many()
-print(note1.get_id())
-print(note1.get_id())
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "content": self.content,
+            "created_at": self.created_at.isoformat()
+        }
