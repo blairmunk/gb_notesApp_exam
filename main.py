@@ -1,4 +1,3 @@
-#from interfaces.InterfaceNotes import InterfaceNotes
 from model.JsonModel import NoteManager
 from view.ConsoleView import ConsoleView
 from Controller import Controller
