@@ -27,4 +27,4 @@ class ConsoleView():
 
         decision = input("Ваш выбор: ")
 
-        return desicion
+        return decision
