@@ -83,10 +83,18 @@ class NoteManager(InterfaceNotes):
             note.modified_at = datetime.now()
             note.content = new_content
         
-
+    def filter_by_date(self, start_date, end_date):
+        for note in self.notes:
+            if start_date <= note.created_at <= end_date:
+                print('----')
+                print(f"Created_at: {note.created_at.strftime('%Y-%m-%d %H:%M')}")
+                print(f"ID: {note.id}")
+                print(f"Title: {note.title}")
+                print()
 
     def print_all_notes(self):
         for note in self.notes:
+            print('----')
             print(f"Created_at: {note.created_at.strftime('%Y-%m-%d %H:%M')}")
             print(f"ID: {note.id}")
             print(f"Title: {note.title}")
