@@ -36,11 +36,15 @@ class NoteManager(InterfaceNotes):
                 return True
         return False
 
-    def add_note(self, title, content):
+    def title_exist_msg_check(self,title):
         if self.check_note_by_title(title):
             print(f'Заметка с заголовком "{title}" уже существует')
-            print()
-        else:
+            return True
+        else: return False
+
+
+    def add_note(self, title, content):
+        if not self.title_exist_msg_check(title):
             note = Note(title, content)
             self.notes.append(note)
             self.save_notes()
@@ -57,9 +61,10 @@ class NoteManager(InterfaceNotes):
 
     def edit_note_by_title(self, title, new_title, new_content):
         note = self.get_note_by_title(title)
-        note.modified_at = datetime.now()
-        note.title = new_title
-        note.content = new_content
+        if not self.title_exist_msg_check(new_title):
+            note.title = new_title
+            note.modified_at = datetime.now()
+            note.content = new_content
 
     def print_all_notes(self):
         for note in self.notes:
