@@ -24,7 +24,6 @@ class Controller():
                     continue
                 print("Вот эта заметка:")
                 self.model.print_note_by_title(title)
-                print()
 
                 new_title = input("Введите новый заголовок для заметки: ")
                 new_content = input("Введите текст заметки: ")
@@ -36,6 +35,8 @@ class Controller():
             elif decision.lower() in {"3", "d"}:
                 title = input("Введите заголовок заметки, которая должна быть удалена: ")
                 self.model.delete_note_by_title(title)
+                print("Заметка была удалена!")
+                print()
                 continue
             
             elif decision.lower() in {"4", "a"}:
@@ -49,6 +50,7 @@ class Controller():
                 continue
             
             else: 
+                self.model.save_notes()
                 print("Выход. Пока!")
                 break
     
